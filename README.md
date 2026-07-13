@@ -7,7 +7,7 @@
 - 🌱 I’m currently improving my skills with AI and engineering.
 
 - Looks some personal projects that I'm working on:
-  - [SearchUnit](https://seatchunit.io/): AI-powered SEO and GEO auditor.
+  - [SearchUnit](https://searchunit.io/): AI-powered SEO and GEO auditor.
   - [Chamar No Zap](https://chamarnozap.com/): A tool to help you to create WhatsApp messages and send them to your contacts.
   - [FallZilla](https://play.google.com/store/apps/details?id=com.nervz.fallzilla): A simple game made with Flutter.
 
