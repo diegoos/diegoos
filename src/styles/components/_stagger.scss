@@ -1,0 +1,47 @@
+.stagger {
+  &__line {
+    display: block;
+    opacity: 0;
+    transform: translateY(var(--stagger-distance));
+    filter: blur(var(--stagger-blur));
+    transition:
+      opacity var(--stagger-dur) var(--stagger-ease),
+      transform var(--stagger-dur) var(--stagger-ease),
+      filter var(--stagger-dur) var(--stagger-ease);
+    will-change: transform, opacity, filter;
+
+    &--name {
+      transition-delay: var(--stagger-stagger);
+    }
+
+    &--bio {
+      transition-delay: calc(var(--stagger-stagger) * 2);
+    }
+
+    &.is-shown {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    &.is-hiding {
+      opacity: 0;
+      transform: translateY(0);
+      filter: blur(0);
+      transition:
+        opacity 200ms ease,
+        transform 0s linear,
+        filter 0s linear;
+      transition-delay: 0s;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger__line {
+    transition: none !important;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}

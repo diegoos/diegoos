@@ -1,0 +1,75 @@
+:root {
+  /* Colors — committed dark */
+  --color-bg: #24272a;
+  --color-accent: #2b4ff8;
+  --color-text: #e8eaed;
+  --color-text-muted: #9aa0a8;
+  --color-surface-hover: #2e3136;
+  --color-accent-muted: color-mix(in srgb, var(--color-accent) 18%, transparent);
+
+  /* Semantic aliases */
+  --surface: var(--color-bg);
+  --on-surface: var(--color-text);
+  --primary: var(--color-text);
+  --secondary: var(--color-text-muted);
+  --tertiary: var(--color-accent);
+
+  /* Typography */
+  --font-sans: var(--font-noto-sans);
+  --font-display: var(--font-noto-sans);
+  --font-body: var(--font-noto-sans);
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+  --page-inline: clamp(1.5rem, 5vw, 4rem);
+  --page-block: clamp(2rem, 8vh, 6rem);
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-full: 9999px;
+
+  /* Motion — shared scale */
+  --duration-stagger: 40ms;
+  --duration-micro: 80ms;
+  --duration-quick: 150ms;
+  --duration-fast: 250ms;
+  --duration-medium: 350ms;
+  --duration-slow: 400ms;
+  --duration-very-slow: 500ms;
+
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: ease-in-out;
+
+  /* Texts reveal */
+  --stagger-dur: var(--duration-very-slow);
+  --stagger-distance: 12px;
+  --stagger-stagger: var(--duration-stagger);
+  --stagger-blur: 3px;
+  --stagger-ease: var(--ease-smooth-out);
+
+  /* Interactive grid */
+  --grid-size: 24px;
+  --grid-line: color-mix(in srgb, var(--color-accent) 22%, transparent);
+  --grid-line-focus: color-mix(in srgb, var(--color-accent) 32%, transparent);
+  --grid-base-opacity: 0.22;
+  --grid-energy: color-mix(in srgb, var(--color-accent) 48%, transparent);
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+}
+
+@property --grid-inner {
+  syntax: '<length-percentage>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --grid-outer {
+  syntax: '<length-percentage>';
+  inherits: true;
+  initial-value: 0px;
+}

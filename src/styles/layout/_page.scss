@@ -1,0 +1,115 @@
+.page {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: var(--page-block) var(--page-inline);
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 128px 128px;
+    pointer-events: none;
+  }
+
+  &.is-pointer-active {
+    --grid-inner: 4.75rem;
+    --grid-outer: 11.5rem;
+  }
+
+  &__grid {
+    position: absolute;
+    inset: -24px;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    background-position: 0 0;
+    animation: grid-drift 28s linear infinite;
+
+    &--base {
+      opacity: var(--grid-base-opacity);
+    }
+
+    &--focus {
+      --grid-line: var(--grid-line-focus);
+      opacity: 0;
+      transition:
+        opacity var(--duration-fast) var(--ease-smooth-out),
+        --grid-inner var(--duration-fast) var(--ease-in-out),
+        --grid-outer var(--duration-fast) var(--ease-in-out);
+      -webkit-mask-image: radial-gradient(
+        circle at var(--mouse-x) var(--mouse-y),
+        #000 var(--grid-inner, 0%),
+        transparent var(--grid-outer, 0%)
+      );
+      mask-image: radial-gradient(
+        circle at var(--mouse-x) var(--mouse-y),
+        #000 var(--grid-inner, 0%),
+        transparent var(--grid-outer, 0%)
+      );
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+
+      &.is-active {
+        opacity: 0.55;
+      }
+    }
+  }
+
+  &__bolts {
+    position: absolute;
+    inset: -24px;
+    z-index: 0;
+    width: calc(100% + 48px);
+    height: calc(100% + 48px);
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  &__bolt-path {
+    fill: none;
+    stroke: var(--grid-energy);
+    stroke-width: 1;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+    shape-rendering: crispEdges;
+    opacity: 0;
+  }
+}
+
+@keyframes grid-drift {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: var(--grid-size) var(--grid-size);
+  }
+}
+
+@media (pointer: coarse) {
+  .page__grid--focus,
+  .page__bolts {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page__grid {
+    animation: none;
+  }
+
+  .page__grid--focus,
+  .page__bolts {
+    display: none;
+  }
+}
